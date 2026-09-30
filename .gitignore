@@ -1,0 +1,8 @@
+runs/
+sweep/configs/runs/
+sweep/logs/
+sweep/plots/
+*.gds
+*.odb
+*.spef
+*.lib

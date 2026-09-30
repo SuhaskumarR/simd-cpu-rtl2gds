@@ -1,0 +1,26 @@
+# synth_check.ys — quick sanity synthesis, run with the Yosys that
+# ships inside the OpenLane2 nix environment (or any Yosys ≥0.9).
+# This is NOT the full OpenLane flow — just a fast way to catch
+# latches, undriven nets, and gross synth errors before committing
+# to a full (slower) OpenLane run.
+#
+# Run from simd_cpu/ with:
+#   nix develop github:efabless/openlane2 --command yosys -c scripts/synth_check.ys
+# (or, inside an already-active OpenLane2 nix shell: yosys -c scripts/synth_check.ys)
+
+read_verilog -sv -DSYNTHESIS src/SIMDadd.v
+read_verilog -sv -DSYNTHESIS src/SIMDshifter.v
+read_verilog -sv -DSYNTHESIS src/SIMDmultiply.v
+read_verilog -sv -DSYNTHESIS src/CPUtop.v
+
+hierarchy -check -top CPUtop
+proc
+opt
+synth -top CPUtop
+
+# Flag inferred latches explicitly (should print none for this design
+# if the WB-stage FSM gating is fixed; will show latch-like warnings
+# in the log for the buggy write-back paths noted separately).
+check -noinit
+
+stat

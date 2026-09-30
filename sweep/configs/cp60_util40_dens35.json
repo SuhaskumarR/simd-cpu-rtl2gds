@@ -1,0 +1,27 @@
+{
+  "DESIGN_NAME": "CPUtop",
+  "VERILOG_FILES": [
+    "/home/suhas/simd_cpu/src/SIMDadd.v",
+    "/home/suhas/simd_cpu/src/SIMDshifter.v",
+    "/home/suhas/simd_cpu/src/SIMDmultiply.v",
+    "/home/suhas/simd_cpu/src/CPUtop.v"
+  ],
+  "VERILOG_DEFINES": [
+    "SYNTHESIS"
+  ],
+  "FALLBACK_SDC_FILE": "/home/suhas/simd_cpu/constraints/CPUtop.sdc",
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 60,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+  "FP_SIZING": "relative",
+  "FP_CORE_UTIL": 40,
+  "FP_ASPECT_RATIO": 1,
+  "PL_TARGET_DENSITY_PCT": 35,
+  "DIODE_INSERTION_STRATEGY": 4,
+  "RUN_HEURISTIC_DIODE_INSERTION": true,
+  "SYNTH_STRATEGY": "AREA 0",
+  "SYNTH_SIZING": true,
+  "CLOCK_TREE_SYNTH": true,
+  "RUN_CVC": false
+}
